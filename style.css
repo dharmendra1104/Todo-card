@@ -1,38 +1,49 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Anta", sans-serif;
+    font-weight: 400;
+    font-style: normal
 }
 
-body{
+
+
+body {
     background-color: #B4D4FF;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-/* 
-.main-container{
-    height: 400px;
-    width: 100%;
-    aspect-ratio: 3/1;
-    overflow-y: hidden;
-    overflow-x: scroll;
-    scroll-snap-type: y mandatory;
-} */
-.main{
-    position: relative;
-    width: 100%;
+
+section {
+    width: 65%;
     height: 100vh;
     display: flex;
+    gap: 30px;
     flex-direction: column;
-     background-color: aqua;
     justify-content: center;
     align-items: center;
-    gap: 0.5rem;
-    
 }
 
-.cards{
+.main-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+}
+
+.cards {
     height: 90px;
     width: 270px;
     border-radius: 10px;
@@ -40,33 +51,75 @@ body{
 
 }
 
-.text-box{
+.text-box {
     position: absolute;
     margin-top: 7rem;
     height: 90px;
     width: 260px;
-    background-color: white;
-    border: 2px solid blue;
+    border-radius: 3px;
+    background-color: #EEF5FF;
+    border: 2px solid #068FFF;
 }
 
-.task{
+.text-box input {
+    padding: 6px;
+    border: none;
+    margin: 6px;
+    background-color: #EEF5FF;
+}
+
+.task-card {
+    margin-top: 1rem;
+    justify-content: space-between;
     display: flex;
     gap: .3rem;
-    background-color:rgba(231, 228, 228, 0.288);;
 }
-.nav{
+
+.task,
+.creat {
+    display: flex;
+    gap: 7px;
+}
+
+.task {
+    margin-left: 10px;
+    background-color: rgba(255, 255, 255, 0.733);
+    border-radius: 4px;
+    width: 80px;
+    padding: 5px;
+}
+
+.icon i {
+    color: #40A2E3;
+}
+
+.creat {
+    margin-right: 10px;
+    background-color: rgba(255, 255, 255, 0.733);
+    border-radius: 4px;
+    padding: 5px;
+    color: gray;
+}
+
+.icons i {
+    background-color: #B5C0D0;
+    padding: 1px;
+    color: white;
+}
+
+.nav {
     padding: .7rem;
     display: flex;
     justify-content: space-between;
 }
 
-.head{
+.head {
     width: 40%;
     display: flex;
     justify-content: space-between;
 }
 
-.head input{
+.head input {
     width: 50px;
     border: none;
     background-color: rgba(255, 255, 255, 0.438);
@@ -74,23 +127,29 @@ body{
     border-radius: 5px;
 }
 
-::placeholder{
+::placeholder {
     display: flex;
     justify-content: space-around;
     width: 100%;
 }
 
-.lower{
+.lower {
     width: 28%;
     display: flex;
     justify-content: space-around;
     margin: .8rem;
+    cursor: pointer;
 }
 
-.lower button{
+.lower button {
     border: none;
-    background-color:rgba(255, 255, 255, 0.103);
+    background-color: rgba(255, 255, 255, 0.103);
 }
-.lower h6{
+
+.lower h6 {
     font-size: 16px;
+}
+
+.hide {
+    display: none;
 }
