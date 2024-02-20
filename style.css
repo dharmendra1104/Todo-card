@@ -135,7 +135,7 @@ section {
     display: flex;
     justify-content: space-around;
     margin: .8rem;
-    margin-top: 7rem;
+    /* margin-top: 7rem; */
     cursor: pointer;
 }
 
@@ -150,4 +150,8 @@ section {
 
 .hide {
     display: none;
+}
+
+.newCard{
+  background-color: #068FFF;
 }

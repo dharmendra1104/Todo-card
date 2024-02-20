@@ -61,7 +61,7 @@ todo.forEach((item) => {
             newCard.style.padding = '10px';
             newCard.style.borderRadius = '10px';
             newCard.style.marginTop = '5px';
-            newCard.style.background = 'blue';
+            newCard.style.background = '#068FFF';
 
             cards.appendChild(newCard);
         }
