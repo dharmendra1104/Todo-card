@@ -12,6 +12,11 @@ let todo = [
 
 let centralContainer = document.querySelector('.main-container');
 
+let draggingInfo = {
+    draggingElement: null,
+    draggingId: null,
+}
+
 todo.forEach((item) => {
     let cardContainer = document.createElement('div');
     cardContainer.className = 'main';
@@ -31,6 +36,7 @@ todo.forEach((item) => {
          <button class="btn"><i class="fa-solid fa-plus"></i></button>
           <h6>Create</h6>
          </div>
+         <div class="box"></div>
       </div>
       <div class="text-box hide">
           <input type="text" placeholder="What needs to be done?" class="myinput">
@@ -49,21 +55,33 @@ todo.forEach((item) => {
 
     cardContainer.innerHTML = cardHTML;
     centralContainer.appendChild(cardContainer);
-    let cards=document.querySelector('.cards')
 
+    let box = document.querySelector('.box')
+    let textbox = cardContainer.querySelector('.text-box');
     let input = cardContainer.querySelector('.myinput');
+
     input.addEventListener('keyup', (e) => {
+        input.focus()
         if (e.keyCode === 13) {
             let value = input.value;
             let newCard = document.createElement('div');
             newCard.innerText = value;
             newCard.className = 'new-card';
-            newCard.style.padding = '10px';
-            newCard.style.borderRadius = '10px';
-            newCard.style.marginTop = '5px';
-            newCard.style.background = '#068FFF';
+            newCard.setAttribute('data-container', 'card')
+            newCard.draggable = 'true'
+            box.appendChild(newCard);
 
-            cards.appendChild(newCard);
+            newCard.addEventListener('dragstart', (e) => {
+                // console.log('hello')
+                draggingInfo.draggingElement = e.target
+                draggingInfo.draggingId = e.target.getAttribute('data-container')
+                console.log(draggingInfo.draggingElement, draggingInfo.draggingId)
+            })
+
+            textbox.classList.add('hide')
+            input.classList.remove('hide')
+            input.value = ''
+            input.value = ''
         }
     });
 
@@ -72,4 +90,22 @@ todo.forEach((item) => {
         let hide = e.target.closest('.cards').nextElementSibling;
         hide.classList.toggle('hide');
     });
+});
+
+let allcards = document.querySelectorAll('.cards')
+allcards.forEach((item) => {
+    item.addEventListener('dragover', (event) => {
+        event.preventDefault();
+    });
+
+    item.addEventListener('drop', (e) => {
+        // console.log('dropping card')
+        let card = draggingInfo.draggingElement;
+        card.id = draggingInfo.draggingId;
+        let box = e.currentTarget;
+        //   console.log(box)
+        box.appendChild(card)
+
+    });
+
 });
