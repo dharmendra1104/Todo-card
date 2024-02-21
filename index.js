@@ -21,7 +21,7 @@ todo.forEach((item) => {
     let cardContainer = document.createElement('div');
     cardContainer.className = 'main';
 
-    let cardHTML = `
+    let card = `
       <div class="cards">
           <nav class="nav">
            <div class="head">
@@ -53,7 +53,7 @@ todo.forEach((item) => {
           </div>
       </div> `;
 
-    cardContainer.innerHTML = cardHTML;
+    cardContainer.innerHTML = card;
     centralContainer.appendChild(cardContainer);
 
     let box = document.querySelector('.box')
@@ -82,8 +82,11 @@ todo.forEach((item) => {
             input.classList.remove('hide')
             input.value = ''
             input.value = ''
+            
+
         }
     });
+
 
     let button = cardContainer.querySelector('.lower');
     button.addEventListener('click', (e) => {
@@ -94,8 +97,8 @@ todo.forEach((item) => {
 
 let allcards = document.querySelectorAll('.cards')
 allcards.forEach((item) => {
-    item.addEventListener('dragover', (event) => {
-        event.preventDefault();
+    item.addEventListener('dragover', (e) => {
+        e.preventDefault();
     });
 
     item.addEventListener('drop', (e) => {
