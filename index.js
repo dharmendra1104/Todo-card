@@ -17,7 +17,7 @@ let draggingInfo = {
     draggingId: null,
 }
 
-todo.forEach((item) => {
+todo.forEach((item, index) => {
     let cardContainer = document.createElement('div');
     cardContainer.className = 'main';
 
@@ -36,7 +36,7 @@ todo.forEach((item) => {
          <button class="btn"><i class="fa-solid fa-plus"></i></button>
           <h6>Create</h6>
          </div>
-         <div class="box"></div>
+         <div class="box" id=${index}></div>
       </div>
       <div class="text-box hide">
           <input type="text" placeholder="What needs to be done?" class="myinput">
@@ -56,19 +56,22 @@ todo.forEach((item) => {
     cardContainer.innerHTML = card;
     centralContainer.appendChild(cardContainer);
 
-    let box = document.querySelector('.box')
+    let box = cardContainer.querySelector('.box')
     let textbox = cardContainer.querySelector('.text-box');
     let input = cardContainer.querySelector('.myinput');
+    
 
     input.addEventListener('keyup', (e) => {
         input.focus()
-        if (e.keyCode === 13) {
+        if (e.keyCode === 13) {  
             let value = input.value;
             let newCard = document.createElement('div');
             newCard.innerText = value;
             newCard.className = 'new-card';
             newCard.setAttribute('data-container', 'card')
             newCard.draggable = 'true'
+            let target = e.target
+            console.log(target)
             box.appendChild(newCard);
 
             newCard.addEventListener('dragstart', (e) => {
@@ -80,9 +83,14 @@ todo.forEach((item) => {
 
             textbox.classList.add('hide')
             input.classList.remove('hide')
-            input.value = ''
-            input.value = ''
-            
+
+            // input.value = ''
+            // input.value = ''
+            let parentContainer = e.target.parentElement.previousElementSibling.lastElementChild
+            console.log(parentContainer)
+
+            parentContainer.appendChild(newCard)
+            e.target.value = ''
 
         }
     });
@@ -90,12 +98,17 @@ todo.forEach((item) => {
 
     let button = cardContainer.querySelector('.lower');
     button.addEventListener('click', (e) => {
+        // ......
+        // input.focuson()
         let hide = e.target.closest('.cards').nextElementSibling;
         hide.classList.toggle('hide');
+        
+        let input = hide.querySelector('.myinput');
+        input.focus();
     });
 });
 
-let allcards = document.querySelectorAll('.cards')
+let allcards = document.querySelectorAll('.box')
 allcards.forEach((item) => {
     item.addEventListener('dragover', (e) => {
         e.preventDefault();
@@ -104,11 +117,11 @@ allcards.forEach((item) => {
     item.addEventListener('drop', (e) => {
         // console.log('dropping card')
         let card = draggingInfo.draggingElement;
-        card.id = draggingInfo.draggingId;
+        // card.id = draggingInfo.draggingId;
         let box = e.currentTarget;
         //   console.log(box)
         box.appendChild(card)
-
+       
     });
 
 });

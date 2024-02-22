@@ -63,6 +63,7 @@ section {
     border: none;
     margin: 6px;
     background-color: #EEF5FF;
+    outline: none;
 }
 
 .task-card {
